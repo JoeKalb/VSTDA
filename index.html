@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>VSTDA</title>
+<!-- bower:css -->
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+<!-- endbower -->
+
+<!-- inject:css -->
+<link rel="stylesheet" href="/app/styles/styles.css">
+<!-- endinject -->
+</head>
+<body>
+<div class="container" ng-controller="MainController">
+	<h1>Simple todo list</h1>
+	<legend></legend>
+	<div class="row">
+		<div class="col-sm-4">
+			<div>
+				<div class="panel panel-default">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<div class="form-group ">
+								<p>Add Todo Item</p>
+							</div>
+						</div>
+					</div>
+					<!-- This will be the place to submit new items to the list -->
+					<div class="panel-body">
+						<div class="form-group">
+							<label>Text</label>
+							<input type="text" name="" class="form-control" ng-model="info" required="">
+						</div>
+						<div class="form-group">
+						<label for="">Priority</label>
+							<!-- Each item is given a "value" for both easier sorting and css coloring -->
+							<select name="" id="" class="form-control" ng-model="rank" required="">
+								<option value=""></option>
+								<option value="1">Low</option>
+								<option value="2">Medium</option>
+								<option value="3">High</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<!-- The button adds the new item to the todo list -->
+							<button type="" class="btn btn-primary" value="" ng-click="addNew(todo)">Add Todo</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-8">
+			<div class="btn-group" role="group">
+				<!-- Each button will rank the todo list differently -->
+				<button type="button" class="btn btn-primary" ng-click="sortBy('-rank')">Order by highest priority</button>
+				<button type="button" class="btn btn-primary" ng-click="sortBy('rank')">Order by lowest priority</button>
+				<button type="button" class="btn btn-primary" ng-click="sortBy('info')">Order alphabetically</button>
+			</div>
+			<div>
+				<table class="table table-hover">
+					<!-- Where the sort happens to be passed from the ng-click buttons -->
+					<tr ng-repeat="data in todo | orderBy:property">
+						<!-- setting up the class rank in order to make it easier to sort and color -->
+						<td class="rank{{data.rank}}" ng-hide="">{{data.info}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- bower:js -->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<!-- endbower -->
+<!-- inject:js -->
+<script src="/app/index.js"></script>
+<!-- endinject -->	
+</body>
+</html>
